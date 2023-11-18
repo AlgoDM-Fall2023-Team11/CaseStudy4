@@ -4,7 +4,7 @@
 
 This repository contains the source code and instructions for an application that computes embeddings for a fashion dataset, stores them using PINECONE, and provides an interface through FastAPI and Streamlit for searching images based on text descriptions or finding similar images.
 
-#codelabs and app link
+#CodeLabs and App link:
 https://codelabs-preview.appspot.com/?file_id=16aKADZFnJqfssArS2npdHNryOotnzN_q3PqThFisU1Y#0
 
 ## Dataset
