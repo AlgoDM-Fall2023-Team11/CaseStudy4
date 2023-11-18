@@ -260,7 +260,7 @@ def Image_Search_by_Text():
     image_ids = pd.concat([pd.read_csv(file) for file in sorted(glob.glob(f"{features_path}/*.csv"))])['image_id'].tolist()
 
     # Streamlit app
-    st.title("Image Search App")
+    st.title("Clothing search by text")
 
     # User input
     search_query = st.text_input("Enter your search query:")
