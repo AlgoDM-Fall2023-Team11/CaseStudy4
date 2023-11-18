@@ -161,7 +161,7 @@ def search(search_query, image_features, image_ids, results_count=3):
 #
 # Search for images and visualize the results
 #
-search_query = 'Red T-shirt'  # Replace with your desired search query
+search_query = 'Blue T-shirt'  # Replace with your desired search query
 n_results_per_query = 3  # Number of results to display
 
 
