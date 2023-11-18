@@ -27,7 +27,7 @@ def Image_Match():
     import scipy as sc
 
 
-    st.title("Clothing Style Recommendation")
+    st.title("Explore Image Styles")
 
 
 
@@ -215,7 +215,7 @@ def Image_Match():
     #     search_similar_images(user_image, image_style_embeddings, images)
 
     # Function to search for similar images using user's uploaded image
-    def search_similar_images(user_uploaded_image, image_style_embeddings, images, max_results=10):
+    def search_similar_images(user_uploaded_image, image_style_embeddings, images, max_results=5):
         user_image_tensor = load_image(user_uploaded_image)
         user_style = style_to_vec(image_to_style(user_image_tensor))
 
@@ -226,12 +226,13 @@ def Image_Match():
 
         sorted_neighbors = sorted(distances.items(), key=lambda x: x[1])
 
-        st.write("Images with Similar Style:")
+        st.write("Most similar images:")
         for i, (image_path, distance) in enumerate(sorted_neighbors[:max_results]):
             st.image(images[image_path], caption=f"Distance: {distance}", use_column_width=True)
 
     # Streamlit UI
-    st.write("Choose an image for recommendation:")
+
+    st.write("Upload your image:")
     user_image = st.file_uploader("", type=["jpg", "jpeg", "png"])
     if user_image:
         search_similar_images(user_image, image_style_embeddings, images)
@@ -259,10 +260,10 @@ def Image_Search_by_Text():
     image_ids = pd.concat([pd.read_csv(file) for file in sorted(glob.glob(f"{features_path}/*.csv"))])['image_id'].tolist()
 
     # Streamlit app
-    st.title("Clothing Search Engine")
+    st.title("Image Search App")
 
     # User input
-    search_query = st.text_input("Enter Clothing Details")
+    search_query = st.text_input("Enter your search query:")
 
     def encode_search_query(search_query):
         with torch.no_grad():
@@ -291,7 +292,7 @@ def Image_Search_by_Text():
 
     images_path = Path("Apparel\Apparel\Girls\Images\images_with_product_ids1")
 
-    if st.button("Search Options"):
+    if st.button("Search"):
         if search_query:
             result_image_ids = search(search_query, image_features, image_ids)
 
@@ -307,7 +308,7 @@ def Image_Search_by_Text():
     pass
 
 # Run the selected app based on the user's choice
-if option == "Similar Clothing Recommendations (Enter Image)":
+if option == "Image Match":
     Image_Match()
-elif option == "Clothing Search Engine (Enter Text)":
+elif option == "Image Search by Text":
     Image_Search_by_Text()
